@@ -3,86 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Panel & Bot WhatsApp Premium</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <title>Panel & Bot WA Gaul</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <style>
     :root {
-      --primary: #25d366;
-      --dark-bg: #0e1117;
-      --light-text: #e5e5e5;
+      --green: #25d366;
+      --dark: #0e0e0e;
+      --light: #f4f4f4;
+      --accent: #00ff88;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--dark-bg);
-      color: var(--light-text);
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--light);
       overflow-x: hidden;
     }
 
     #tsparticles {
       position: fixed;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
 
-    .container {
-      max-width: 600px;
-      margin: auto;
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 60px 20px;
       text-align: center;
     }
 
-    h1 {
-      font-size: 32px;
-      color: var(--primary);
+    .hero img {
+      max-width: 280px;
       margin-bottom: 20px;
     }
 
-    p {
-      font-size: 16px;
+    h1 {
+      font-size: 2.5rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 500px;
       color: #ccc;
       margin-bottom: 30px;
     }
 
     .btn {
-      display: inline-block;
-      background: var(--primary);
+      background: var(--green);
       color: #000;
-      padding: 14px 22px;
-      margin: 10px;
+      padding: 12px 24px;
       border-radius: 10px;
       text-decoration: none;
+      margin: 10px;
       font-weight: bold;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background: var(--accent);
+      transition: all 0.4s ease;
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+    }
+
+    .btn:hover:before {
+      transform: translate(-50%, -50%) scale(1);
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 255, 127, 0.4);
+      color: #fff;
+      transform: scale(1.05);
     }
 
-    .qr {
-      margin-top: 30px;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      text-align: center;
     }
 
-    .qr img {
-      width: 120px;
-      margin: 8px;
+    .feature {
+      background: #1a1a1a;
+      padding: 20px;
       border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .feature:hover {
+      background: #222;
+    }
+
+    .feature img {
+      width: 50px;
+      margin-bottom: 10px;
     }
 
     footer {
-      font-size: 14px;
-      margin-top: 40px;
-      color: #777;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      color: #888;
     }
   </style>
 </head>
@@ -90,34 +128,50 @@
 
 <div id="tsparticles"></div>
 
-<div class="container">
-  <h1>Panel & Bot WhatsApp Premium</h1>
-  <p>Dapatkan source code bot WA dan panel siap pakai untuk kebutuhan bisnis atau reseller. Cepat, ringan, dan full support!</p>
+<section class="hero">
+  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png" alt="Bot WA" />
+  <h1>Bot WhatsApp & Panel Kekinian</h1>
+  <p>Bosen sama bot yang gitu-gitu aja? Coba yang satu ini! Otomatis, bisa multi device, cocok buat jualan, komunitas, dan pamer skill!</p>
+  <a href="https://wa.me/6283160915159?text=Halo%2C%20aku%20mau%20beli%20SC%20bot%20WA%20atau%20panelnya%20dong!" class="btn" target="_blank">Chat Admin</a>
+  <a href="https://chat.whatsapp.com/F2xHjxLTeS1FM7YQ1j8Ork" class="btn" target="_blank">Join Grup</a>
+</section>
 
-  <a class="btn" href="https://wa.me/6283160915159?text=Halo%2C%20saya%20mau%20beli%20panel%20atau%20SC%20bot%20WhatsApp." target="_blank">Chat Admin</a>
-  <a class="btn" href="https://chat.whatsapp.com/F2xHjxLTeS1FM7YQ1j8Ork" target="_blank">Join Grup</a>
-
-  <div class="qr">
-    <p>Scan untuk akses cepat:</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://wa.me/6283160915159?text=Halo%2C%20saya%20mau%20beli%20panel%20atau%20SC%20bot%20WhatsApp.&size=150x150" alt="QR Chat" />
-    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://chat.whatsapp.com/F2xHjxLTeS1FM7YQ1j8Ork&size=150x150" alt="QR Grup" />
+<section class="features">
+  <div class="feature">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712106.png" alt="Otomatis Jawab">
+    <h3>Otomatis Jawab</h3>
+    <p>Balas pesan otomatis 24/7. Auto fast respon, ga perlu capek.</p>
   </div>
+  <div class="feature">
+    <img src="https://cdn-icons-png.flaticon.com/512/929/929430.png" alt="Anti Spam">
+    <h3>Anti Spam</h3>
+    <p>Filter spam & kata kasar, bikin grup lebih sehat & aman.</p>
+  </div>
+  <div class="feature">
+    <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="Multi Device">
+    <h3>Multi Device</h3>
+    <p>Pakai di HP, PC, server? Gas! SC fleksibel dan ringan.</p>
+  </div>
+  <div class="feature">
+    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Custom Panel">
+    <h3>Custom Panel</h3>
+    <p>Tampilan panel bisa diubah sesuai selera kamu sendiri!</p>
+  </div>
+</section>
 
-  <footer>
-    &copy; 2025 Syadewa | WhatsApp Bot & Panel Pro
-  </footer>
-</div>
+<footer>
+  &copy; 2025 Syadewa Project | Bot WA Paling Asik
+</footer>
 
 <script>
   tsParticles.load("tsparticles", {
-    fullScreen: { enable: true },
     particles: {
       number: { value: 50 },
       color: { value: "#25d366" },
       shape: { type: "circle" },
       opacity: { value: 0.3 },
       size: { value: 3 },
-      move: { enable: true, speed: 0.6 }
+      move: { enable: true, speed: 0.8 }
     },
     interactivity: {
       events: {
