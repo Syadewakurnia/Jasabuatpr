@@ -3,122 +3,140 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jasa Bot WhatsApp</title>
+  <title>Jasa Bot WhatsApp & Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f2f5;
       margin: 0;
       padding: 0;
     }
     header {
       background: #25D366;
       color: white;
-      padding: 1em;
       text-align: center;
+      padding: 2rem 1rem;
     }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
     main {
-      padding: 20px;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
     }
+
     .card {
       background: white;
-      margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
     }
     .card h3 {
-      margin-top: 0;
       color: #25D366;
+      margin-top: 0;
     }
-    .btn {
-      display: inline-block;
-      padding: 10px 15px;
-      background: #25D366;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
+
     form {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
     }
     input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
       margin-bottom: 15px;
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 1rem;
     }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background: #25D366;
+      color: white;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1ebe5d;
+    }
+
     footer {
       text-align: center;
-      padding: 15px;
-      font-size: 0.9em;
-      background: #eee;
-      color: #555;
+      font-size: 0.9rem;
+      color: #666;
+      padding: 1.5rem;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Jasa Bot WhatsApp & Panel</h1>
-    <p>By: <a href="https://wa.me/6283160915159" style="color:white;text-decoration:underline;">syadewa</a></p>
+    <p>By: syadewakurnia</p>
   </header>
+
   <main>
     <div class="card">
       <h3>✅ Jual Script Bot WhatsApp</h3>
-      <p>Script bot WhatsApp menggunakan Baileys, cocok untuk pemula dan lanjutan. Full fitur + support update.</p>
+      <p>Script WhatsApp full fitur (Baileys), cocok buat pemula sampai pro. Bisa langsung pakai!</p>
     </div>
     <div class="card">
       <h3>⚙️ Panel 1GB RAM - Unlimited</h3>
-      <p>Hosting murah dan stabil untuk bot kamu. Mulai dari Rp20.000/bulan.</p>
+      <p>Panel hosting dengan RAM 1GB, cocok buat jalanin bot 24 jam. Unlimited bandwidth!</p>
     </div>
     <div class="card">
       <h3>🛡️ Jasa Unban/Ban WhatsApp</h3>
-      <p>Bantuan untuk akun yang terkena banned atau mau reset nomor bot.</p>
+      <p>Nomormu kena banned? Tenang, kami bisa bantu unban. Mau ban nomor? Bisa juga!</p>
     </div>
     <div class="card">
-      <h3>🛠️ Oprek/Rename SC</h3>
-      <p>Kustomisasi nama, menu, dan tampilan bot sesuai kebutuhanmu.</p>
+      <h3>🛠️ Jasa Rename/Oprek Source</h3>
+      <p>Mau ubah nama bot, menu, atau tampilan biar lebih personal? Serahin aja ke kami.</p>
     </div>
     <div class="card">
-      <h3>🤖 Sewa Bot WA</h3>
-      <p>Sewa harian, mingguan, hingga bulanan. Cocok buat bisnis/chat otomatis.</p>
+      <h3>🤖 Sewa Bot WhatsApp</h3>
+      <p>Bisa harian, mingguan, bulanan. Cocok buat jualan, auto-respon, atau komunitas.</p>
     </div>
 
     <div class="card">
-      <h3>📋 Form Order</h3>
-      <form id="orderForm" onsubmit="sendWhatsApp(); return false;">
-        <label>Nama:</label>
-        <input type="text" id="name" required />
-
-        <label>No WhatsApp Aktif:</label>
-        <input type="text" id="whatsapp" required placeholder="08xxx atau +62xxx" />
-
-        <label>Pilih Layanan:</label>
+      <h3>📝 Form Order</h3>
+      <form onsubmit="sendWhatsApp(); return false;">
+        <input type="text" id="name" placeholder="Nama kamu" required>
+        <input type="text" id="whatsapp" placeholder="No WhatsApp aktif" required>
         <select id="service" required>
-          <option value="">-- Pilih --</option>
+          <option value="">-- Pilih layanan --</option>
           <option>Jual Script Bot WA</option>
           <option>Panel 1GB Unlimited</option>
           <option>Unban/Ban WA</option>
-          <option>Oprek/Rename Source</option>
+          <option>Oprek/Rename SC</option>
           <option>Sewa Bot</option>
         </select>
-
-        <label>Keterangan Tambahan:</label>
-        <textarea id="note" rows="4" placeholder="Contoh: ingin bot auto-reply, sewa mingguan, dll."></textarea>
-
-        <button class="btn" type="submit">Kirim Pesanan via WhatsApp</button>
+        <textarea id="note" rows="4" placeholder="Catatan tambahan (opsional)"></textarea>
+        <button type="submit">Kirim via WhatsApp</button>
       </form>
     </div>
   </main>
 
   <footer>
-    &copy; 2025 - Jasa Bot WhatsApp by Syadewakurnia
+    &copy; 2025 - Dibuat oleh syadewakurnia | WA: 6283160915159
   </footer>
 
   <script>
@@ -128,8 +146,7 @@
       const service = document.getElementById('service').value;
       const note = document.getElementById('note').value;
 
-      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}\n\nSilakan dikonfirmasi.`;
-
+      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
       const url = `https://wa.me/6283160915159?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
