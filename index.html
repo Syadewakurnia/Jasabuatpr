@@ -6,9 +6,7 @@
   <title>Jasa Bot WhatsApp & Panel</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       background: #f0f2f5;
@@ -29,13 +27,11 @@
       margin-top: 0.5rem;
       font-size: 1rem;
     }
-
     main {
       max-width: 800px;
       margin: 30px auto;
       padding: 0 20px;
     }
-
     .card {
       background: white;
       border-radius: 14px;
@@ -52,7 +48,6 @@
       color: #25D366;
       margin-top: 0;
     }
-
     form {
       display: flex;
       flex-direction: column;
@@ -85,7 +80,6 @@
     button:hover {
       background: #1ebe5d;
     }
-
     footer {
       text-align: center;
       font-size: 0.9rem;
@@ -105,6 +99,11 @@
   </header>
 
   <main>
+    <div class="card">
+      <h3>📱 Jual & Beli Nomor Kosong</h3>
+      <p>Kami menyediakan nomor kosong (nokos) untuk verifikasi akun, testing bot, dan keperluan lainnya.</p>
+    </div>
+
     <div class="card">
       <h3>✅ Jual Script Bot WhatsApp</h3>
       <p>Script WhatsApp full fitur (Baileys), cocok buat pemula sampai pro. Bisa langsung pakai tanpa ribet!</p>
@@ -139,6 +138,9 @@
         <label for="whatsapp">No WhatsApp Aktif</label>
         <input type="text" id="whatsapp" placeholder="08xxxxxxxxxx" required>
 
+        <label for="dummy">Nomor Kosong (Opsional)</label>
+        <input type="text" id="dummy" placeholder="Contoh: 628xxxxx (jika ada)">
+
         <label for="service">Pilih Layanan</label>
         <select id="service" required>
           <option value="">-- Pilih layanan --</option>
@@ -165,10 +167,11 @@
     function sendWhatsApp() {
       const name = document.getElementById('name').value;
       const whatsapp = document.getElementById('whatsapp').value;
+      const dummy = document.getElementById('dummy').value;
       const service = document.getElementById('service').value;
       const note = document.getElementById('note').value;
 
-      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
+      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n📴 Nomor Kosong: ${dummy || '-'}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
       const url = `https://wa.me/6283160915159?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
