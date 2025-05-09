@@ -100,11 +100,6 @@
 
   <main>
     <div class="card">
-      <h3>📱 Jual & Beli Nomor Kosong</h3>
-      <p>Kami menyediakan nomor kosong (nokos) untuk verifikasi akun, testing bot, dan keperluan lainnya.</p>
-    </div>
-
-    <div class="card">
       <h3>✅ Jual Script Bot WhatsApp</h3>
       <p>Script WhatsApp full fitur (Baileys), cocok buat pemula sampai pro. Bisa langsung pakai tanpa ribet!</p>
     </div>
@@ -130,6 +125,11 @@
     </div>
 
     <div class="card">
+      <h3>📱 Jual Nomor Kosong</h3>
+      <p>Nomor kosong yang siap untuk digunakan. Cocok buat kamu yang butuh nomor baru untuk berbagai keperluan.</p>
+    </div>
+
+    <div class="card">
       <h3>📝 Form Order</h3>
       <form onsubmit="sendWhatsApp(); return false;">
         <label for="name">Nama Kamu</label>
@@ -137,9 +137,6 @@
 
         <label for="whatsapp">No WhatsApp Aktif</label>
         <input type="text" id="whatsapp" placeholder="08xxxxxxxxxx" required>
-
-        <label for="dummy">Nomor Kosong (Opsional)</label>
-        <input type="text" id="dummy" placeholder="Contoh: 628xxxxx (jika ada)">
 
         <label for="service">Pilih Layanan</label>
         <select id="service" required>
@@ -149,6 +146,7 @@
           <option>Oprek/Rename SC</option>
           <option>Sewa Bot</option>
           <option>MurBug - Fitur Bug WA</option>
+          <option>Jual Nomor Kosong</option>
         </select>
 
         <label for="note">Catatan Tambahan (Opsional)</label>
@@ -167,11 +165,10 @@
     function sendWhatsApp() {
       const name = document.getElementById('name').value;
       const whatsapp = document.getElementById('whatsapp').value;
-      const dummy = document.getElementById('dummy').value;
       const service = document.getElementById('service').value;
       const note = document.getElementById('note').value;
 
-      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n📴 Nomor Kosong: ${dummy || '-'}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
+      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
       const url = `https://wa.me/6283160915159?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
