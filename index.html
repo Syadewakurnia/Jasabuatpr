@@ -23,7 +23,7 @@
     }
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
     header p {
       margin-top: 0.5rem;
@@ -38,14 +38,15 @@
 
     .card {
       background: white;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
     }
     .card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
     }
     .card h3 {
       color: #25D366;
@@ -55,6 +56,10 @@
     form {
       display: flex;
       flex-direction: column;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
     }
     input, select, textarea {
       margin-bottom: 15px;
@@ -71,6 +76,7 @@
       color: white;
       padding: 12px;
       font-size: 1rem;
+      font-weight: 600;
       border: none;
       border-radius: 8px;
       cursor: pointer;
@@ -86,6 +92,10 @@
       color: #666;
       padding: 1.5rem;
     }
+    footer a {
+      color: #25D366;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -97,46 +107,58 @@
   <main>
     <div class="card">
       <h3>✅ Jual Script Bot WhatsApp</h3>
-      <p>Script WhatsApp full fitur (Baileys), cocok buat pemula sampai pro. Bisa langsung pakai!</p>
+      <p>Script WhatsApp full fitur (Baileys), cocok buat pemula sampai pro. Bisa langsung pakai tanpa ribet!</p>
     </div>
+
     <div class="card">
       <h3>⚙️ Panel 1GB RAM - Unlimited</h3>
-      <p>Panel hosting dengan RAM 1GB-Unlimited, cocok buat jalanin bot 24 jam. </p>
+      <p>Panel hosting dengan RAM 1GB dan uptime unlimited. Cocok buat jalanin bot non-stop 24 jam.</p>
     </div>
-    <div class="card">
-      <h3>🛡️ Jasa Unban/Ban WhatsApp</h3>
-      <p>Nomormu kena banned? Tenang, kami bisa bantu unban. Mau ban nomor? Bisa juga!</p>
-    </div>
+
     <div class="card">
       <h3>🛠️ Jasa Rename/Oprek Source</h3>
-      <p>Mau ubah nama bot, menu, atau tampilan biar lebih personal? Serahin aja ke kami.</p>
+      <p>Ingin ubah nama bot, menu, atau tampilan agar lebih personal? Serahkan aja ke kami.</p>
     </div>
+
     <div class="card">
       <h3>🤖 Sewa Bot WhatsApp</h3>
-      <p>Bisa harian, mingguan, bulanan. Cocok buat jualan, auto-respon, atau komunitas.</p>
+      <p>Bot siap jaga grup 24 jam! Cocok buat komunitas, auto-respon, anti-link, welcome message, dan fitur grup lainnya.</p>
+    </div>
+
+    <div class="card">
+      <h3>🧨 MurBug - Fitur Bug WhatsApp</h3>
+      <p>Fitur eksklusif untuk eksperimen dan uji coba bug sistem WhatsApp. Gunakan secara bijak & bertanggung jawab.</p>
     </div>
 
     <div class="card">
       <h3>📝 Form Order</h3>
       <form onsubmit="sendWhatsApp(); return false;">
-        <input type="text" id="name" placeholder="Nama kamu" required>
-        <input type="text" id="whatsapp" placeholder="No WhatsApp aktif" required>
+        <label for="name">Nama Kamu</label>
+        <input type="text" id="name" placeholder="Contoh: Dewa" required>
+
+        <label for="whatsapp">No WhatsApp Aktif</label>
+        <input type="text" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+
+        <label for="service">Pilih Layanan</label>
         <select id="service" required>
           <option value="">-- Pilih layanan --</option>
           <option>Beli Script Bot WA</option>
           <option>Panel 1GB-Unlimited</option>
-          <option>Unban/Ban WA</option>
           <option>Oprek/Rename SC</option>
           <option>Sewa Bot</option>
+          <option>MurBug - Fitur Bug WA</option>
         </select>
-        <textarea id="note" rows="4" placeholder="Catatan tambahan (opsional)"></textarea>
+
+        <label for="note">Catatan Tambahan (Opsional)</label>
+        <textarea id="note" rows="4" placeholder="Catatan tambahan..."></textarea>
+
         <button type="submit">Kirim via WhatsApp</button>
       </form>
     </div>
   </main>
 
   <footer>
-    &copy; 2025 - Dibuat oleh syadewakurnia | WA: 6283160915159
+    &copy; 2025 - Dibuat oleh syadewakurnia | <a href="https://wa.me/6283160915159" target="_blank">Hubungi via WhatsApp</a>
   </footer>
 
   <script>
