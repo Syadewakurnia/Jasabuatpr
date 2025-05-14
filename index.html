@@ -9,44 +9,46 @@
     * { box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f0f2f5;
+      background: linear-gradient(to bottom right, #e7fbe9, #d0f0dd);
       margin: 0;
       padding: 0;
     }
     header {
-      background: #25D366;
+      background: linear-gradient(135deg, #25D366, #128C7E);
       color: white;
       text-align: center;
       padding: 2rem 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     header h1 {
       margin: 0;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
     }
     header p {
       margin-top: 0.5rem;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
     main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 25px;
     }
     .card {
       background: white;
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
     }
     .card h3 {
       color: #25D366;
       margin-top: 0;
+      font-size: 1.5rem;
     }
     form {
       display: flex;
@@ -54,56 +56,61 @@
     }
     label {
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
     input, select, textarea {
-      margin-bottom: 15px;
-      padding: 12px;
+      margin-bottom: 18px;
+      padding: 12px 15px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
     }
-    textarea {
-      resize: vertical;
+    input:focus, select:focus, textarea:focus {
+      border-color: #25D366;
     }
     button {
       background: #25D366;
       color: white;
-      padding: 12px;
+      padding: 14px;
       font-size: 1rem;
       font-weight: 600;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s;
     }
     button:hover {
       background: #1ebe5d;
+      transform: scale(1.02);
     }
     footer {
       text-align: center;
       font-size: 0.9rem;
       color: #666;
-      padding: 1.5rem;
+      padding: 2rem 1rem;
     }
     footer a {
       color: #25D366;
       text-decoration: none;
+      font-weight: 600;
     }
     ul {
       padding-left: 1.2rem;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Jasa Bot WhatsApp & Panel</h1>
-    <p>By:Xanzz Store </p>
+    <p>By: Xanzz Store</p>
   </header>
 
   <main>
     <div class="card">
-      <h3>⚙️ Panel Murah full fitur</h3>
+      <h3>⚙️ Panel Murah Full Fitur</h3>
       <p>Pilihan lengkap dengan harga hemat dan fitur mantap!</p>
       <ul>
         <li>1GB = 1K</li>
@@ -115,10 +122,10 @@
       </ul>
       <p><strong>Keuntungan:</strong></p>
       <ul>
-        <li>Server Lancar</li>
-        <li>Terjamin keamanan dari rusuh</li>
-        <li>Server Private</li>
-        <li>Masa Aktif Sampe VPS Mokad</li>
+        <li>Server Lancar & Stabil</li>
+        <li>Keamanan Anti Rusuh</li>
+        <li>Server Private Eksklusif</li>
+        <li>Masa Aktif Sampai VPS Mokad</li>
         <li>Garansi 10 Hari</li>
         <li>Masa Aktif 1 Bulan</li>
       </ul>
@@ -129,34 +136,33 @@
       <ul>
         <li>Anti Delay, Server Fresh</li>
         <li>Server Private</li>
-        <li>Bot ON 24 Jam</li>
+        <li>Bot Aktif 24 Jam</li>
         <li>Anti PT-PT</li>
-        <li>Balmod Kalo Niat</li>
+        <li>Bisa Balmod Kalau Niat</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>🧰 Admin Panel 12K</h3>
       <ul>
-        <li>Server beda dari Reseller Panel</li>
-        <li>Gabung dengan PT/Owner</li>
-        <li>Server Private, Fresh, Anti Delay</li>
+        <li>Server beda dari Reseller</li>
+        <li>Gabung PT/Owner</li>
+        <li>Private Server Anti Delay</li>
         <li>Bisa open Reseller Panel</li>
-        <li>Bisa buat Panel sepuasnya</li>
-        <li>Balmod Kalo Niat</li>
+        <li>Bisa buat Panel Sepuasnya</li>
+        <li>Bisa Balmod Kalau Niat</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>👑 PT Panel 18K</h3>
       <ul>
-        <li>Server beda dari Reseller Panel</li>
-        <li>Gabung dengan ADP</li>
-        <li>Server Private, Fresh, Anti Delay</li>
-        <li>Bisa open Reseller Panel</li>
-        <li>Bisa open Admin Panel</li>
-        <li>Bisa buat Panel sepuasnya</li>
-        <li>Balmod Kalo Niat</li>
+        <li>Server beda dari Reseller</li>
+        <li>Gabung ADP</li>
+        <li>Private Server Anti Delay</li>
+        <li>Bisa open Reseller & Admin Panel</li>
+        <li>Bisa buat Panel Sepuasnya</li>
+        <li>Bisa Balmod Kalau Niat</li>
       </ul>
     </div>
 
@@ -172,10 +178,10 @@
         <label for="service">Pilih Layanan</label>
         <select id="service" required>
           <option value="">-- Pilih layanan --</option>
-          <option>Panel </option>
-          <option>Reseller Panel </option>
-          <option>Admin Panel </option>
-          <option>PT Panel </option>
+          <option>Panel</option>
+          <option>Reseller Panel</option>
+          <option>Admin Panel</option>
+          <option>PT Panel</option>
         </select>
 
         <label for="note">Catatan Tambahan (Opsional)</label>
@@ -187,7 +193,7 @@
   </main>
 
   <footer>
-    &copy; 2025 - Dibuat oleh syadewakurnia | <a href="https://wa.me/6283160915159" target="_blank">Hubungi via WhatsApp</a>
+    &copy; 2025 - Dibuat oleh syadewakurnia | <a href="https://wa.me/6281233608260" target="_blank">Hubungi via WhatsApp</a>
   </footer>
 
   <script>
@@ -198,7 +204,7 @@
       const note = document.getElementById('note').value;
 
       const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
-      const url = `https://wa.me/6283160915159?text=${encodeURIComponent(message)}`;
+      const url = `https://wa.me/6281233608260?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     }
   </script>
