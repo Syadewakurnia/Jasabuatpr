@@ -2,211 +2,216 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jasa Bot WhatsApp & Panel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zymeus Store</title>
   <style>
-    * { box-sizing: border-box; }
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom right, #e7fbe9, #d0f0dd);
       margin: 0;
-      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #fff;
     }
     header {
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      color: white;
+      background: #1e293b;
+      padding: 20px;
       text-align: center;
-      padding: 2rem 1rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     header h1 {
       margin: 0;
-      font-size: 2.4rem;
+      color: #38bdf8;
     }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
+    .container {
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
     }
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 25px;
+    .product {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      transition: transform 0.3s ease;
     }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-    }
-    .card h3 {
-      color: #25D366;
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    label {
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    input, select, textarea {
-      margin-bottom: 18px;
-      padding: 12px 15px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 1rem;
-      outline: none;
-      transition: border 0.2s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #25D366;
-    }
-    button {
-      background: #25D366;
-      color: white;
-      padding: 14px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s;
-    }
-    button:hover {
-      background: #1ebe5d;
+    .product:hover {
       transform: scale(1.02);
+    }
+    .btn-order {
+      background: #38bdf8;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .btn-order:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
     }
     footer {
       text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-      padding: 2rem 1rem;
+      padding: 20px;
+      background: #0f172a;
+      font-size: 14px;
+      color: #94a3b8;
     }
-    footer a {
-      color: #25D366;
-      text-decoration: none;
-      font-weight: 600;
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
     }
-    ul {
-      padding-left: 1.2rem;
-      line-height: 1.6;
+    .popup-content {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 350px;
+      width: 90%;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .popup-content input,
+    .popup-content select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+    }
+    .popup-content button {
+      padding: 10px 20px;
+      border: none;
+      margin: 10px 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-confirm {
+      background: #22c55e;
+      color: #fff;
+    }
+    .btn-cancel {
+      background: #ef4444;
+      color: #fff;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    .po-label {
+      color: #facc15;
+      background:#1c1917;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .estimasi-po {
+      font-style: italic;
+      font-size: 13px;
+      margin-top: 6px;
+      color: #a1a1aa;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Jasa Bot WhatsApp & Panel</h1>
-    <p>By: Xanzz Store</p>
-  </header>
 
-  <main>
-    <div class="card">
-      <h3>⚙️ Panel Murah Full Fitur</h3>
-      <p>Pilihan lengkap dengan harga hemat dan fitur mantap!</p>
-      <ul>
-        <li>1GB = 1K</li>
-        <li>2GB = 2K</li>
-        <li>3GB = 3K</li>
-        <li>4GB = 4K</li>
-        <li>5GB = 5K</li>
-        <li>Unli = 6K</li>
-      </ul>
-      <p><strong>Keuntungan:</strong></p>
-      <ul>
-        <li>Server Lancar & Stabil</li>
-        <li>Keamanan Anti Rusuh</li>
-        <li>Server Private Eksklusif</li>
-        <li>Masa Aktif Sampai VPS Mokad</li>
-        <li>Garansi 10 Hari</li>
-        <li>Masa Aktif 1 Bulan</li>
-      </ul>
-    </div>
+<header>
+  <h1>Zymeus Store</h1>
+  <p>Jual Nomor Kosong & Murnok Termurah!</p>
+</header>
 
-    <div class="card">
-      <h3>🔄 Reseller Panel 8K</h3>
-      <ul>
-        <li>Anti Delay, Server Fresh</li>
-        <li>Server Private</li>
-        <li>Bot Aktif 24 Jam</li>
-        <li>Anti PT-PT</li>
-        <li>Bisa Balmod Kalau Niat</li>
-      </ul>
-    </div>
+<div class="container">
+  <div class="product">
+    <h2>Nokos Biasa <span class="po-label">PRE ORDER</span></h2>
+    <p><strong>Harga:</strong> Rp6.500</p>
+    <p>Bisa untuk jualan, daftar akun, bot WhatsApp, dll.</p>
+    <p class="estimasi-po">Estimasi pengiriman: 1–2 hari setelah pemesanan.</p>
+    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 6500, true)">Pesan</button>
+  </div>
 
-    <div class="card">
-      <h3>🧰 Admin Panel 12K</h3>
-      <ul>
-        <li>Server beda dari Reseller</li>
-        <li>Gabung PT/Owner</li>
-        <li>Private Server Anti Delay</li>
-        <li>Bisa open Reseller Panel</li>
-        <li>Bisa buat Panel Sepuasnya</li>
-        <li>Bisa Balmod Kalau Niat</li>
-      </ul>
-    </div>
+  <div class="product">
+    <h2>Murnok</h2>
+    <p><strong>Harga:</strong> Rp8.000</p>
+    <p>Bisa create nokos sepuasnya. Cocok untuk reseller & untung besar!</p>
+    <button class="btn-order" onclick="bukaCheckout('Murnok', 8000, false)">Pesan</button>
+  </div>
+</div>
 
-    <div class="card">
-      <h3>👑 PT Panel 18K</h3>
-      <ul>
-        <li>Server beda dari Reseller</li>
-        <li>Gabung ADP</li>
-        <li>Private Server Anti Delay</li>
-        <li>Bisa open Reseller & Admin Panel</li>
-        <li>Bisa buat Panel Sepuasnya</li>
-        <li>Bisa Balmod Kalau Niat</li>
-      </ul>
-    </div>
+<div class="popup" id="checkoutPopup">
+  <div class="popup-content">
+    <h3>Checkout</h3>
+    <p id="itemCheckout"></p>
+    <input type="text" id="namaPembeli" placeholder="Masukkan nama Anda" />
+    <select id="jumlahBeli" onchange="updateHarga()">
+      <option value="1">1 Buah</option>
+      <option value="2">2 Buah</option>
+      <option value="3">3 Buah</option>
+      <option value="5">5 Buah</option>
+      <option value="10">10 Buah</option>
+    </select>
+    <p id="totalHarga">Total Harga: Rp0</p>
+    <button class="btn-confirm" onclick="kirimPesan()">Kirim ke WhatsApp</button>
+    <button class="btn-cancel" onclick="tutupPopup()">Batal</button>
+  </div>
+</div>
 
-    <div class="card">
-      <h3>📝 Form Order</h3>
-      <form onsubmit="sendWhatsApp(); return false;">
-        <label for="name">Nama Kamu</label>
-        <input type="text" id="name" placeholder="Contoh: Dewa" required>
+<footer>
+  &copy; 2025 Zymeus Store - All rights reserved.
+</footer>
 
-        <label for="whatsapp">No WhatsApp Aktif</label>
-        <input type="text" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+<script>
+  let itemDipilih = '';
+  let hargaSatuan = 0;
+  let preOrder = false;
 
-        <label for="service">Pilih Layanan</label>
-        <select id="service" required>
-          <option value="">-- Pilih layanan --</option>
-          <option>Panel</option>
-          <option>Reseller Panel</option>
-          <option>Admin Panel</option>
-          <option>PT Panel</option>
-        </select>
+  function bukaCheckout(item, harga, isPO) {
+    itemDipilih = item;
+    hargaSatuan = harga;
+    preOrder = isPO;
+    document.getElementById('itemCheckout').innerText = `Item: ${item}${preOrder ? ' (PRE ORDER)' : ''}`;
+    document.getElementById('jumlahBeli').value = '1';
+    updateHarga();
+    document.getElementById('checkoutPopup').style.display = 'flex';
+  }
 
-        <label for="note">Catatan Tambahan (Opsional)</label>
-        <textarea id="note" rows="4" placeholder="Catatan tambahan..."></textarea>
+  function tutupPopup() {
+    document.getElementById('checkoutPopup').style.display = 'none';
+  }
 
-        <button type="submit">Kirim via WhatsApp</button>
-      </form>
-    </div>
-  </main>
+  function updateHarga() {
+    const jumlah = parseInt(document.getElementById('jumlahBeli').value);
+    const total = hargaSatuan * jumlah;
+    document.getElementById('totalHarga').innerText = `Total Harga: Rp${total.toLocaleString('id-ID')}`;
+  }
 
-  <footer>
-    &copy; NOTE:KALO MAU BELI BISANYA VIA GOPAY DAN QRISS| <a href="https://wa.me/6281233608260" target="_blank">Hubungi via WhatsApp</a>
-  </footer>
+  function kirimPesan() {
+    const nama = document.getElementById('namaPembeli').value.trim();
+    const jumlah = parseInt(document.getElementById('jumlahBeli').value);
+    const total = hargaSatuan * jumlah;
 
-  <script>
-    function sendWhatsApp() {
-      const name = document.getElementById('name').value;
-      const whatsapp = document.getElementById('whatsapp').value;
-      const service = document.getElementById('service').value;
-      const note = document.getElementById('note').value;
-
-      const message = `📦 Pesanan Baru\n\n🧑 Nama: ${name}\n📱 No WA: ${whatsapp}\n💼 Layanan: ${service}\n📝 Catatan: ${note || '-'}`;
-      const url = `https://wa.me/6281233608260?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
+    if (nama === '') {
+      alert("Nama belum diisi!");
+      return;
     }
-  </script>
+
+    const noWA = '6283160915159';
+    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah* seharga total *Rp${total.toLocaleString('id-ID')}*.`;
+    if (preOrder) {
+      pesan += `\nCatatan: Saya paham bahwa produk ini bersifat *PRE ORDER* dengan estimasi pengiriman 1–2 hari setelah pemesanan.`;
+    }
+    const link = `https://wa.me/${noWA}?text=${encodeURIComponent(pesan)}`;
+    window.open(link, '_blank');
+    tutupPopup();
+  }
+</script>
+
 </body>
 </html>
