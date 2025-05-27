@@ -4,58 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zymeus Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background: #0f172a;
-      color: #fff;
+      color: #f8fafc;
     }
     header {
       background: #1e293b;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
+      border-bottom: 2px solid #334155;
     }
     header h1 {
       margin: 0;
+      font-size: 28px;
       color: #38bdf8;
     }
+    header p {
+      margin-top: 8px;
+      color: #94a3b8;
+    }
     .container {
-      padding: 30px;
-      max-width: 700px;
+      padding: 40px 20px;
+      max-width: 800px;
       margin: auto;
     }
     .product {
       background: #1e293b;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       transition: transform 0.3s ease;
     }
     .product:hover {
-      transform: scale(1.02);
+      transform: translateY(-5px);
+    }
+    .product h2 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 20px;
     }
     .btn-order {
       background: #38bdf8;
-      color: #000;
+      color: #0f172a;
       border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 12px 24px;
+      border-radius: 10px;
       font-weight: bold;
-      transition: all 0.3s ease;
+      cursor: pointer;
+      transition: 0.3s ease;
     }
     .btn-order:hover {
       background: #0ea5e9;
       transform: scale(1.05);
     }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #0f172a;
-      font-size: 14px;
-      color: #94a3b8;
+    .po-label {
+      color: #facc15;
+      background: #1c1917;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .estimasi-po {
+      font-style: italic;
+      font-size: 13px;
+      margin-top: 6px;
+      color: #a1a1aa;
     }
     .popup {
       display: none;
@@ -105,19 +127,12 @@
       from {opacity: 0; transform: scale(0.9);}
       to {opacity: 1; transform: scale(1);}
     }
-    .po-label {
-      color: #facc15;
-      background:#1c1917;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      margin-left: 10px;
-    }
-    .estimasi-po {
-      font-style: italic;
-      font-size: 13px;
-      margin-top: 6px;
-      color: #a1a1aa;
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0f172a;
+      font-size: 14px;
+      color: #94a3b8;
     }
   </style>
 </head>
@@ -131,15 +146,15 @@
 <div class="container">
   <div class="product">
     <h2>Nokos Biasa <span class="po-label">PRE ORDER</span></h2>
-    <p><strong>Harga:</strong> Rp6.500</p>
+    <p><strong>Harga:</strong> Rp5.000 + Biaya Admin Rp1.500</p>
     <p>Bisa untuk jualan, daftar akun, bot WhatsApp, dll.</p>
     <p class="estimasi-po">Estimasi pengiriman: 1–2 hari setelah pemesanan.</p>
-    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 6500, true)">Pesan</button>
+    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 5000, true)">Pesan</button>
   </div>
 
   <div class="product">
     <h2>Murnok</h2>
-    <p><strong>Harga:</strong> Rp8.000</p>
+    <p><strong>Harga:</strong> Rp8.000 + Biaya Admin Rp1.500</p>
     <p>Bisa create nokos sepuasnya. Cocok untuk reseller & untung besar!</p>
     <button class="btn-order" onclick="bukaCheckout('Murnok', 8000, false)">Pesan</button>
   </div>
@@ -171,6 +186,7 @@
   let itemDipilih = '';
   let hargaSatuan = 0;
   let preOrder = false;
+  const biayaAdmin = 1500;
 
   function bukaCheckout(item, harga, isPO) {
     itemDipilih = item;
@@ -188,14 +204,15 @@
 
   function updateHarga() {
     const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah;
-    document.getElementById('totalHarga').innerText = `Total Harga: Rp${total.toLocaleString('id-ID')}`;
+    const total = hargaSatuan * jumlah + biayaAdmin;
+    document.getElementById('totalHarga').innerText =
+      `Total Harga: Rp${total.toLocaleString('id-ID')} (termasuk admin Rp1.500)`;
   }
 
   function kirimPesan() {
     const nama = document.getElementById('namaPembeli').value.trim();
     const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah;
+    const total = hargaSatuan * jumlah + biayaAdmin;
 
     if (nama === '') {
       alert("Nama belum diisi!");
