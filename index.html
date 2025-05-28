@@ -105,6 +105,7 @@
       margin: 10px 0;
       border: none;
       border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
     }
     .popup-content button {
       padding: 10px 20px;
@@ -149,14 +150,14 @@
     <p><strong>Harga:</strong> Rp5.000 + Biaya Admin Rp1.500</p>
     <p>Bisa untuk jualan, daftar akun, bot WhatsApp, dll.</p>
     <p class="estimasi-po">Estimasi pengiriman: 1–2 hari setelah pemesanan.</p>
-    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 5000, true)">Pesan</button>
+    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 5000, true, false)">Pesan</button>
   </div>
 
   <div class="product">
     <h2>Murnok</h2>
     <p><strong>Harga:</strong> Rp8.000 + Biaya Admin Rp1.500</p>
     <p>Bisa create nokos sepuasnya. Cocok untuk reseller & untung besar!</p>
-    <button class="btn-order" onclick="bukaCheckout('Murnok', 8000, false)">Pesan</button>
+    <button class="btn-order" onclick="bukaCheckout('Murnok', 8000, false, true)">Pesan</button>
   </div>
 </div>
 
@@ -165,13 +166,7 @@
     <h3>Checkout</h3>
     <p id="itemCheckout"></p>
     <input type="text" id="namaPembeli" placeholder="Masukkan nama Anda" />
-    <select id="jumlahBeli" onchange="updateHarga()">
-      <option value="1">1 Buah</option>
-      <option value="2">2 Buah</option>
-      <option value="3">3 Buah</option>
-      <option value="5">5 Buah</option>
-      <option value="10">10 Buah</option>
-    </select>
+    <select id="jumlahBeli" onchange="updateHarga()"></select>
     <p id="totalHarga">Total Harga: Rp0</p>
     <button class="btn-confirm" onclick="kirimPesan()">Kirim ke WhatsApp</button>
     <button class="btn-cancel" onclick="tutupPopup()">Batal</button>
@@ -186,14 +181,27 @@
   let itemDipilih = '';
   let hargaSatuan = 0;
   let preOrder = false;
+  let murnok = false;
   const biayaAdmin = 1500;
 
-  function bukaCheckout(item, harga, isPO) {
+  function bukaCheckout(item, harga, isPO, isMurnok) {
     itemDipilih = item;
     hargaSatuan = harga;
     preOrder = isPO;
+    murnok = isMurnok;
+
+    const jumlahSelect = document.getElementById('jumlahBeli');
+    jumlahSelect.innerHTML = '';
+
+    const options = murnok ? [1, 2] : [1, 2, 3, 5, 10];
+    options.forEach(j => {
+      const opt = document.createElement('option');
+      opt.value = j;
+      opt.textContent = `${j} Buah`;
+      jumlahSelect.appendChild(opt);
+    });
+
     document.getElementById('itemCheckout').innerText = `Item: ${item}${preOrder ? ' (PRE ORDER)' : ''}`;
-    document.getElementById('jumlahBeli').value = '1';
     updateHarga();
     document.getElementById('checkoutPopup').style.display = 'flex';
   }
@@ -220,10 +228,12 @@
     }
 
     const noWA = '6283160915159';
-    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah* seharga total *Rp${total.toLocaleString('id-ID')}*.`;
+    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah*.\nTotal harga: *Rp${total.toLocaleString('id-ID')}* (termasuk admin Rp1.500).`;
+
     if (preOrder) {
-      pesan += `\nCatatan: Saya paham bahwa produk ini bersifat *PRE ORDER* dengan estimasi pengiriman 1–2 hari setelah pemesanan.`;
+      pesan += `\nCatatan: Saya paham bahwa ini adalah *PRE ORDER* dengan estimasi pengiriman 1–2 hari.`;
     }
+
     const link = `https://wa.me/${noWA}?text=${encodeURIComponent(pesan)}`;
     window.open(link, '_blank');
     tutupPopup();
