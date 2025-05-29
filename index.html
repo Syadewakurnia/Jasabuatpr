@@ -65,14 +65,6 @@
       background: #0ea5e9;
       transform: scale(1.05);
     }
-    .po-label {
-      color: #facc15;
-      background: #1c1917;
-      padding: 4px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-      margin-left: 10px;
-    }
     .estimasi-po {
       font-style: italic;
       font-size: 13px;
@@ -96,7 +88,10 @@
       max-width: 350px;
       width: 90%;
       text-align: center;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .popup-content.fadeOut {
+      animation: fadeOut 0.3s ease forwards;
     }
     .popup-content input,
     .popup-content select {
@@ -124,10 +119,6 @@
       background: #ef4444;
       color: #fff;
     }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.9);}
-      to {opacity: 1; transform: scale(1);}
-    }
     footer {
       text-align: center;
       padding: 20px;
@@ -135,9 +126,20 @@
       font-size: 14px;
       color: #94a3b8;
     }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    @keyframes fadeOut {
+      from {opacity: 1; transform: scale(1);}
+      to {opacity: 0; transform: scale(0.9);}
+    }
   </style>
 </head>
 <body>
+
+<!-- Suara klik -->
+<audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3c9f2da5e6.mp3" preload="auto"></audio>
 
 <header>
   <h1>Zymeus Store</h1>
@@ -146,18 +148,17 @@
 
 <div class="container">
   <div class="product">
-    <h2>Nokos Biasa <span class="po-label">PRE ORDER</span></h2>
+    <h2>Nokos Biasa</h2>
     <p><strong>Harga:</strong> Rp5.000 + Biaya Admin Rp1.500</p>
     <p>Bisa untuk jualan, daftar akun, bot WhatsApp, dll.</p>
-    <p class="estimasi-po">Estimasi pengiriman: 1–2 hari setelah pemesanan.</p>
-    <button class="btn-order" onclick="bukaCheckout('Nokos Biasa', 5000, true, false)">Pesan</button>
+    <button class="btn-order" onclick="mainkanSuara(); bukaCheckout('Nokos Biasa', 5000, false, false)">Pesan</button>
   </div>
 
   <div class="product">
     <h2>Murnok</h2>
-    <p><strong>Harga:</strong> Rp8.000 + Biaya Admin Rp1.500</p>
+    <p><strong>Harga:</strong> Rp8.000</p>
     <p>Bisa create nokos sepuasnya. Cocok untuk reseller & untung besar!</p>
-    <button class="btn-order" onclick="bukaCheckout('Murnok', 8000, false, true)">Pesan</button>
+    <button class="btn-order" onclick="mainkanSuara(); bukaCheckout('Murnok', 8000, false, true)">Pesan</button>
   </div>
 </div>
 
@@ -168,8 +169,8 @@
     <input type="text" id="namaPembeli" placeholder="Masukkan nama Anda" />
     <select id="jumlahBeli" onchange="updateHarga()"></select>
     <p id="totalHarga">Total Harga: Rp0</p>
-    <button class="btn-confirm" onclick="kirimPesan()">Kirim ke WhatsApp</button>
-    <button class="btn-cancel" onclick="tutupPopup()">Batal</button>
+    <button class="btn-confirm" onclick="mainkanSuara(); kirimPesan()">Kirim ke WhatsApp</button>
+    <button class="btn-cancel" onclick="mainkanSuara(); tutupPopup()">Batal</button>
   </div>
 </div>
 
@@ -183,6 +184,12 @@
   let preOrder = false;
   let murnok = false;
   const biayaAdmin = 1500;
+
+  function mainkanSuara() {
+    const klik = document.getElementById('clickSound');
+    klik.currentTime = 0;
+    klik.play();
+  }
 
   function bukaCheckout(item, harga, isPO, isMurnok) {
     itemDipilih = item;
@@ -201,26 +208,31 @@
       jumlahSelect.appendChild(opt);
     });
 
-    document.getElementById('itemCheckout').innerText = `Item: ${item}${preOrder ? ' (PRE ORDER)' : ''}`;
+    document.getElementById('itemCheckout').innerText = `Item: ${item}`;
     updateHarga();
     document.getElementById('checkoutPopup').style.display = 'flex';
   }
 
   function tutupPopup() {
-    document.getElementById('checkoutPopup').style.display = 'none';
+    const popupContent = document.querySelector('.popup-content');
+    popupContent.classList.add('fadeOut');
+    setTimeout(() => {
+      document.getElementById('checkoutPopup').style.display = 'none';
+      popupContent.classList.remove('fadeOut');
+    }, 300);
   }
 
   function updateHarga() {
     const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah + biayaAdmin;
+    const total = hargaSatuan * jumlah + (murnok ? 0 : biayaAdmin);
     document.getElementById('totalHarga').innerText =
-      `Total Harga: Rp${total.toLocaleString('id-ID')} (termasuk admin Rp1.500)`;
+      `Total Harga: Rp${total.toLocaleString('id-ID')}${murnok ? '' : ' (termasuk admin Rp1.500)'}`;
   }
 
   function kirimPesan() {
     const nama = document.getElementById('namaPembeli').value.trim();
     const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah + biayaAdmin;
+    const total = hargaSatuan * jumlah + (murnok ? 0 : biayaAdmin);
 
     if (nama === '') {
       alert("Nama belum diisi!");
@@ -228,11 +240,7 @@
     }
 
     const noWA = '6283160915159';
-    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah*.\nTotal harga: *Rp${total.toLocaleString('id-ID')}* (termasuk admin Rp1.500).`;
-
-    if (preOrder) {
-      pesan += `\nCatatan: Saya paham bahwa ini adalah *PRE ORDER* dengan estimasi pengiriman 1–2 hari.`;
-    }
+    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah*.\nTotal harga: *Rp${total.toLocaleString('id-ID')}*${murnok ? '' : ' (termasuk admin Rp1.500)'}.`;
 
     const link = `https://wa.me/${noWA}?text=${encodeURIComponent(pesan)}`;
     window.open(link, '_blank');
