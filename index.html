@@ -8,25 +8,9 @@
       margin: 0;
       background: black;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       text-align: center;
       padding-top: 100px;
-    }
-    #hantu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: black;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    #hantu img {
-      max-width: 100%;
-      height: auto;
     }
     button {
       padding: 15px 30px;
@@ -35,32 +19,47 @@
       color: white;
       border: none;
       border-radius: 10px;
+      cursor: pointer;
+    }
+    #jumpscare {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      background: black;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   </style>
 </head>
 <body>
-  <h1>Permainan Fokus</h1>
-  <p>Fokus ke layar ini dan klik tombol di bawah...</p>
+
+  <h1>Fokus ke layar ya...</h1>
+  <p>Jangan berkedip dan klik tombol di bawah</p>
   <button onclick="mulai()">Mulai</button>
 
-  <!-- Hantu dan suara -->
-  <div id="hantu">
-    <img src="https://i.ibb.co/HqVY9vK/jumpscare.png" alt="HANTU SERAM">
+  <div id="jumpscare">
+    <video id="video" src="video.mp4" autoplay></video>
   </div>
-  <audio id="suara" src="https://www.soundjay.com/human/screaming-woman-01.mp3" preload="auto"></audio>
 
   <script>
     function mulai() {
-      // Paksa volume ke maksimal
-      const audio = document.getElementById('suara');
-      audio.volume = 1.0;
+      const video = document.getElementById("video");
+      video.volume = 1.0;
 
-      // Delay 5 detik lalu munculkan hantu
       setTimeout(() => {
-        document.getElementById('hantu').style.display = 'flex';
-        audio.play().catch(e => console.warn("Audio tidak bisa dimainkan"));
-      }, 5000);
+        document.getElementById("jumpscare").style.display = "flex";
+        video.currentTime = 0;
+        video.play().catch(err => console.error("Gagal play:", err));
+      }, 5000); // delay 5 detik
     }
   </script>
+
 </body>
 </html>
