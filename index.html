@@ -1,252 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zymeus Store</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Kalkulator </title>
   <style>
-    * { box-sizing: border-box; }
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-    }
-    header {
-      background: #1e293b;
-      padding: 30px 20px;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       text-align: center;
-      border-bottom: 2px solid #334155;
+      padding: 50px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #38bdf8;
-    }
-    header p {
-      margin-top: 8px;
-      color: #94a3b8;
-    }
-    .container {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .product {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 25px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      transition: transform 0.3s ease;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-    }
-    .product h2 {
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 20px;
-    }
-    .btn-order {
-      background: #38bdf8;
-      color: #0f172a;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-    .btn-order:hover {
-      background: #0ea5e9;
-      transform: scale(1.05);
-    }
-    .estimasi-po {
-      font-style: italic;
-      font-size: 13px;
-      margin-top: 6px;
-      color: #a1a1aa;
-    }
-    .popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 99;
-    }
-    .popup-content {
-      background: #1e293b;
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 350px;
-      width: 90%;
-      text-align: center;
-      animation: fadeIn 0.3s ease forwards;
-    }
-    .popup-content.fadeOut {
-      animation: fadeOut 0.3s ease forwards;
-    }
-    .popup-content input,
-    .popup-content select {
-      width: 100%;
+    input, select, button {
       padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      font-family: 'Poppins', sans-serif;
-    }
-    .popup-content button {
-      padding: 10px 20px;
-      border: none;
-      margin: 10px 5px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .btn-confirm {
-      background: #22c55e;
-      color: #fff;
-    }
-    .btn-cancel {
-      background: #ef4444;
-      color: #fff;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #0f172a;
-      font-size: 14px;
-      color: #94a3b8;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.9);}
-      to {opacity: 1; transform: scale(1);}
-    }
-    @keyframes fadeOut {
-      from {opacity: 1; transform: scale(1);}
-      to {opacity: 0; transform: scale(0.9);}
+      margin: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
+  <h1>Kalkulator </h1>
+  <input type="number" id="num1" placeholder="Angka pertama">
+  <select id="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" id="num2" placeholder="Angka kedua">
+  <button onclick="hitung()">Hitung</button>
 
-<!-- Suara klik -->
-<audio id="clickSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_3c9f2da5e6.mp3" preload="auto"></audio>
+  <h2>Hasil: <span id="hasil">?</span></h2>
 
-<header>
-  <h1>Zymeus Store</h1>
-  <p>Jual Nomor Kosong & Murnok Termurah!</p>
-</header>
+  <script>
+    function hitung() {
+      const n1 = parseFloat(document.getElementById('num1').value);
+      const n2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('operator').value;
+      let hasilAsli;
 
-<div class="container">
-  <div class="product">
-    <h2>Nokos Biasa</h2>
-    <p><strong>Harga:</strong> Rp5.000 + Biaya Admin Rp1.500</p>
-    <p>Bisa untuk jualan, daftar akun, bot WhatsApp, dll.</p>
-    <button class="btn-order" onclick="mainkanSuara(); bukaCheckout('Nokos Biasa', 5000, false, false)">Pesan</button>
-  </div>
+      switch(op) {
+        case '+': hasilAsli = n1 + n2; break;
+        case '-': hasilAsli = n1 - n2; break;
+        case '*': hasilAsli = n1 * n2; break;
+        case '/': hasilAsli = n2 !== 0 ? n1 / n2 : NaN; break;
+        default: hasilAsli = 0;
+      }
 
-  <div class="product">
-    <h2>Murnok</h2>
-    <p><strong>Harga:</strong> Rp8.000</p>
-    <p>Bisa create nokos sepuasnya. Cocok untuk reseller & untung besar!</p>
-    <button class="btn-order" onclick="mainkanSuara(); bukaCheckout('Murnok', 8000, false, true)">Pesan</button>
-  </div>
-</div>
+      // Tambahkan kesalahan acak
+      const error = Math.floor(Math.random() * 10 + 1); // 1 s.d. 10
+      const salah = hasilAsli + error;
 
-<div class="popup" id="checkoutPopup">
-  <div class="popup-content">
-    <h3>Checkout</h3>
-    <p id="itemCheckout"></p>
-    <input type="text" id="namaPembeli" placeholder="Masukkan nama Anda" />
-    <select id="jumlahBeli" onchange="updateHarga()"></select>
-    <p id="totalHarga">Total Harga: Rp0</p>
-    <button class="btn-confirm" onclick="mainkanSuara(); kirimPesan()">Kirim ke WhatsApp</button>
-    <button class="btn-cancel" onclick="mainkanSuara(); tutupPopup()">Batal</button>
-  </div>
-</div>
-
-<footer>
-  &copy; 2025 Zymeus Store - All rights reserved.
-</footer>
-
-<script>
-  let itemDipilih = '';
-  let hargaSatuan = 0;
-  let preOrder = false;
-  let murnok = false;
-  const biayaAdmin = 1500;
-
-  function mainkanSuara() {
-    const klik = document.getElementById('clickSound');
-    klik.currentTime = 0;
-    klik.play();
-  }
-
-  function bukaCheckout(item, harga, isPO, isMurnok) {
-    itemDipilih = item;
-    hargaSatuan = harga;
-    preOrder = isPO;
-    murnok = isMurnok;
-
-    const jumlahSelect = document.getElementById('jumlahBeli');
-    jumlahSelect.innerHTML = '';
-
-    const options = murnok ? [1, 2] : [1, 2, 3, 5, 10];
-    options.forEach(j => {
-      const opt = document.createElement('option');
-      opt.value = j;
-      opt.textContent = `${j} Buah`;
-      jumlahSelect.appendChild(opt);
-    });
-
-    document.getElementById('itemCheckout').innerText = `Item: ${item}`;
-    updateHarga();
-    document.getElementById('checkoutPopup').style.display = 'flex';
-  }
-
-  function tutupPopup() {
-    const popupContent = document.querySelector('.popup-content');
-    popupContent.classList.add('fadeOut');
-    setTimeout(() => {
-      document.getElementById('checkoutPopup').style.display = 'none';
-      popupContent.classList.remove('fadeOut');
-    }, 300);
-  }
-
-  function updateHarga() {
-    const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah + (murnok ? 0 : biayaAdmin);
-    document.getElementById('totalHarga').innerText =
-      `Total Harga: Rp${total.toLocaleString('id-ID')}${murnok ? '' : ' (termasuk admin Rp1.500)'}`;
-  }
-
-  function kirimPesan() {
-    const nama = document.getElementById('namaPembeli').value.trim();
-    const jumlah = parseInt(document.getElementById('jumlahBeli').value);
-    const total = hargaSatuan * jumlah + (murnok ? 0 : biayaAdmin);
-
-    if (nama === '') {
-      alert("Nama belum diisi!");
-      return;
+      document.getElementById('hasil').innerText = isNaN(salah) ? 'Error!' : salah.toFixed(2);
     }
-
-    const noWA = '6283160915159';
-    let pesan = `Halo kak, saya *${nama}* ingin memesan *${itemDipilih}* sebanyak *${jumlah} buah*.\nTotal harga: *Rp${total.toLocaleString('id-ID')}*${murnok ? '' : ' (termasuk admin Rp1.500)'}.`;
-
-    const link = `https://wa.me/${noWA}?text=${encodeURIComponent(pesan)}`;
-    window.open(link, '_blank');
-    tutupPopup();
-  }
-</script>
-
+  </script>
 </body>
 </html>
