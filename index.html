@@ -1,110 +1,248 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jasa Buat PR Digital</title>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zymeus Market | Clean White Edition</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #0a0a0a;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-    }
-    header {
-        text-align: center;
-        padding: 30px;
-        background: linear-gradient(90deg, #0ff, #00f);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 2rem;
-        font-weight: 700;
-        text-shadow: 0 0 10px #00f, 0 0 20px #0ff;
-    }
-    .container {
-        max-width: 600px;
-        margin: auto;
-        background-color: #111;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 0 20px rgba(0,255,255,0.2);
-    }
-    label {
-        display: block;
-        margin-top: 15px;
-        font-weight: 500;
-    }
-    input, select, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-top: 8px;
-        border: none;
-        border-radius: 6px;
-        background-color: #1a1a1a;
-        color: #fff;
-        font-size: 1rem;
-        outline: none;
-    }
-    textarea {
-        min-height: 100px;
-        resize: vertical;
-    }
-    button {
-        margin-top: 20px;
-        width: 100%;
-        padding: 12px;
-        background: linear-gradient(90deg, #0ff, #00f);
-        border: none;
-        color: #000;
-        font-weight: 700;
-        font-size: 1.1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 15px #0ff;
-    }
-</style>
+    <style>
+        :root {
+            --primary: #007bff; /* Biru Cerah */
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #1a1d20;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .zymeus-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Shadow tipis agar bersih */
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        .label-custom {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        /* Form Styling */
+        .form-control, .form-select {
+            background: #f1f3f5;
+            border: 2px solid transparent;
+            border-radius: 14px;
+            padding: 12px 16px;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+            outline: none;
+        }
+
+        /* Nominal Grid */
+        .nominal-option {
+            background: #f1f3f5;
+            border-radius: 12px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .btn-check:checked + .nominal-option {
+            background: #e7f1ff;
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Payment Buttons */
+        .payment-option {
+            background: #ffffff;
+            border: 2px solid #f1f3f5;
+            border-radius: 18px;
+            padding: 20px;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .payment-option:hover {
+            border-color: #dee2e6;
+            transform: translateY(-3px);
+        }
+
+        .btn-check:checked + .payment-option {
+            border-color: var(--primary);
+            background: #f0f7ff;
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+        }
+
+        .payment-option i { 
+            font-size: 2.2rem; 
+            color: var(--primary); 
+            margin-bottom: 8px; 
+            display: block; 
+        }
+
+        .instruction {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 25px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<header>💻 Jasa Buat PR Digital</header>
+<div class="zymeus-card">
+    <div class="text-center mb-4">
+        <h1 class="brand-title">Zymeus Market</h1>
+        <p class="text-muted fw-bold small">Top Up Game Cepat & Mudah</p>
+    </div>
 
-<div class="container">
-    <form id="prForm">
-        <label>Nama Lengkap</label>
-        <input type="text" name="nama" placeholder="Masukkan nama lengkap" required>
+    <form id="topupForm">
+        <div class="mb-4">
+            <label class="label-custom"><i class='bx bxs-game me-2'></i> 1. DATA AKUN</label>
+            <select class="form-select mb-3" id="game" required>
+                <option value="">Pilih Game...</option>
+                <option value="Free Fire">🔥 Free Fire</option>
+                <option value="Mobile Legends">⚔️ Mobile Legends</option>
+                <option value="PUBG Mobile">🔫 PUBG Mobile</option>
+                <option value="Call of Duty">🎖️ Call of Duty</option>
+                <option value="Roblox">🎮 Roblox</option>
+            </select>
+            <div class="row g-2">
+                <div class="col-6"><input type="text" id="gameid" class="form-control" placeholder="ID Pemain" required></div>
+                <div class="col-6"><input type="text" id="username" class="form-control" placeholder="Nickname" required></div>
+            </div>
+        </div>
 
-        <label>Kelas</label>
-        <input type="text" name="kelas" placeholder="Misal: VII B" required>
+        <div class="mb-4">
+            <label class="label-custom"><i class='bx bxs-badge-dollar me-2'></i> 2. NOMINAL TOP UP</label>
+            <div class="row g-2 mb-2">
+                <div class="col-4">
+                    <input type="radio" class="btn-check" name="nom_select" id="n1" value="50 Diamond" onclick="setNominal(this.value)">
+                    <label class="nominal-option" for="n1">50 DM</label>
+                </div>
+                <div class="col-4">
+                    <input type="radio" class="btn-check" name="nom_select" id="n2" value="140 Diamond" onclick="setNominal(this.value)">
+                    <label class="nominal-option" for="n2">140 DM</label>
+                </div>
+                <div class="col-4">
+                    <input type="radio" class="btn-check" name="nom_select" id="n3" value="720 Diamond" onclick="setNominal(this.value)">
+                    <label class="nominal-option" for="n3">720 DM</label>
+                </div>
+            </div>
+            <input type="text" id="nominal_input" class="form-control" placeholder="Atau ketik jumlah lainnya..." required>
+        </div>
 
-        <label>Nomor Absen</label>
-        <input type="number" name="absen" placeholder="Nomor absen" required>
+        <div class="mb-4">
+            <label class="label-custom"><i class='bx bxl-whatsapp me-2'></i> 3. NOMOR WHATSAPP ANDA</label>
+            <input type="number" id="user_phone" class="form-control" placeholder="Contoh: 08123456789" required>
+        </div>
 
-        <label>Jenis Pengerjaan</label>
-        <select name="jenis" required>
-            <option value="">-- Pilih --</option>
-            <option value="Canva">Canva</option>
-            <option value="Word">Word</option>
-        </select>
+        <div class="mb-2">
+            <label class="label-custom"><i class='bx bxs-credit-card me-2'></i> 4. KLIK UNTUK BAYAR & KIRIM</label>
+            <div class="row g-3">
+                <div class="col-6">
+                    <input type="radio" class="btn-check" name="payment" id="paySea" value="SeaBank" onchange="processOrder()">
+                    <label class="payment-option" for="paySea">
+                        <i class='bx bxs-bank'></i>
+                        <span class="fw-bold d-block">SeaBank</span>
+                    </label>
+                </div>
+                <div class="col-6">
+                    <input type="radio" class="btn-check" name="payment" id="payQRIS" value="QRIS" onchange="processOrder()">
+                    <label class="payment-option" for="payQRIS">
+                        <i class='bx bx-qr-scan'></i>
+                        <span class="fw-bold d-block">QRIS</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 
-        <label>Soal / Tugas</label>
-        <textarea name="soal" placeholder="Tulis soal atau tugas yang mau dikerjakan..." required></textarea>
-
-        <button type="submit">Kirim</button>
+        <div class="instruction">
+            Situs akan otomatis membuka WhatsApp setelah Anda memilih pembayaran.
+        </div>
     </form>
 </div>
 
 <script>
-document.getElementById("prForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-    alert("Form berhasil dikirim! Kami akan segera memproses PR Anda.");
-});
+    function setNominal(val) {
+        document.getElementById('nominal_input').value = val;
+    }
+
+    function processOrder() {
+        const adminPhone = "6285122662877";
+        const game = document.getElementById('game').value;
+        const id = document.getElementById('gameid').value;
+        const user = document.getElementById('username').value;
+        const nominal = document.getElementById('nominal_input').value;
+        const userWA = document.getElementById('user_phone').value;
+        const payMethod = document.querySelector('input[name="payment"]:checked');
+
+        if (!game || !id || !user || !nominal || !userWA) {
+            alert("Harap lengkapi ID, Username, Nominal, dan Nomor WA!");
+            if(payMethod) payMethod.checked = false;
+            return;
+        }
+
+        const message = `*HALO ZYMEUS MARKET*%0A` +
+                        `------------------------------------------%0A` +
+                        `🎮 *Game:* ${game}%0A` +
+                        `🆔 *ID:* ${id}%0A` +
+                        `👤 *Nickname:* ${user}%0A` +
+                        `💎 *Nominal:* ${nominal}%0A` +
+                        `📱 *WA Pembeli:* ${userWA}%0A` +
+                        `💳 *Metode:* ${payMethod.value}%0A` +
+                        `------------------------------------------%0A` +
+                        `_Mohon proses orderan saya!_`;
+
+        window.open(`https://wa.me/${adminPhone}?text=${message}`, '_blank');
+    }
 </script>
 
 </body>
